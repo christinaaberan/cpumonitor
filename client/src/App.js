@@ -32,7 +32,11 @@ function App() {
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
-    socket.on("FromAPI", (data) => {
+    socket.on("FromAPI", (data) => {r
+      console.log(data)
+      if(!data.timestamp && !data.usage || data.timestamp === "" || data.usage === "") {
+        return;
+      }
       setResponse(data);
       setHistoricData((currentState) =>
         [
