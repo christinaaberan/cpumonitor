@@ -1,0 +1,48 @@
+{
+  "name": "cpumonitor",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://127.0.0.1:3000",
+  "dependencies": {
+    "copy-webpack-plugin": "^5.1.1",
+    "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.4",
+    "nodemon": "^2.0.15",
+    "os-utils": "0.0.14",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^2.1.4",
+    "react-vis": "^1.11.7",
+    "recharts": "^2.1.9",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
