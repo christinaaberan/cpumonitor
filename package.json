@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "node app.js"
+=======
+    "start": "node app.js",
+    "heroku-postbuild": "cd cpumonitor && npm install && npm run build"
+>>>>>>> 3d4078e4edb0718315fef6cd2ec5d30cfa117826
   },
   "keywords": [],
   "author": "",
