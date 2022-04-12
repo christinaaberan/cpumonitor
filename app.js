@@ -14,6 +14,12 @@ const io = require('socket.io')(server, {cors: {origin: "*"}});
 let interval;
 let usage;
 
+app.use(express.static(path.join(__dirname, 'cpumonitor')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'cpumonitor', 'index.html'));
+});
 
 app.use(index);
 app.use(function(req, res, next) {
