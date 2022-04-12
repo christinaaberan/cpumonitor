@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const http = require("http");
 const socketIo = require("socket.io");
 
@@ -10,6 +11,15 @@ const osu = require('node-os-utils');
 const cpu = osu.cpu;
 const server = http.createServer(app);
 const io = require('socket.io')(server, {cors: {origin: "*"}});
+
+app.use(express.static(path.resolve(__dirname, "./cpumonitor/build")));
+
+app.use(express.static(path.join(__dirname, 'cpumonitor')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'cpumonitor', 'index.html'));
+});
 
 let interval;
 let usage;
