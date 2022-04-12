@@ -6,7 +6,7 @@ import "./App.css";
 const ENDPOINT =
   process.env.NODE_ENV === 'production'
     ? window.location.hostname
-    : 'https://localhost:4001';
+    : 'http://127.0.0.1:4001';
 
 function App() {
   const [response, setResponse] = useState(0);
@@ -17,8 +17,8 @@ function App() {
   const [recovered, setRecovered] = useState(false);
   const [recoveredTime, setRecoveredTime] = useState(null);
 
-  const okUsageMin = 75;
-  const badUsageMin = 100;
+  const okUsageMin = 80; // min percent to show orange warning text
+  const badUsageMin = 100; //min percent to show red danger text and high usage alert
 
   const setUsageColor = (val) => {
     if (val < okUsageMin) {
@@ -32,9 +32,12 @@ function App() {
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
+    socket.on('connect_error', function(){
+      console.log('Connection Failed');
+    });
     socket.on("FromAPI", (data) => {
       console.log(data)
-      if(!data.timestamp && !data.usage || data.timestamp === "" || data.usage === "") {
+      if(!data.timestamp && !data.usage) {
         return;
       }
       setResponse(data);
@@ -56,9 +59,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let slicedGraphData = [];
     if (graphData.length >= 59) {
-      graphData.shift();
+      graphData.shift(); //store max 60 data points, roughly 10 mins of data 
     } 
     if (response.usage > badUsageMin) {
       if (downTime === 0) {
@@ -72,9 +74,7 @@ function App() {
       setDownTime(0);
     } else {
       setRecovered(false);
-    }
-    console.log(graphData)
-    
+    }    
   }, [historicData]);
 
   return (

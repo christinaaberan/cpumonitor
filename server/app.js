@@ -16,10 +16,6 @@ let usage;
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'cpumonitor', 'index.html'));
-});
-
 app.use(index);
 app.use(function(req, res, next) {
      res.header("Access-Control-Allow-Origin", "*");
