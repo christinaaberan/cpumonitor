@@ -3,7 +3,10 @@ import socketIOClient from "socket.io-client";
 import LineChart from "./components/linechart";
 import "./App.css";
 
-const ENDPOINT = "http://127.0.0.1:4001";
+const ENDPOINT =
+  process.env.NODE_ENV === 'production'
+    ? window.location.hostname
+    : 'https://localhost:4001';
 
 function App() {
   const [response, setResponse] = useState(0);
